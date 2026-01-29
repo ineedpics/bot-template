@@ -27,10 +27,10 @@ module.exports = {
 
 			process.exit(0);
 		} catch (error) {
-			console.error("[ERROR] Failed to reload commands:", error);
+			console.error("[ERROR] failed to reload commands:", error);
 
 			await interaction.editReply({
-				content: `**Error reloading commands:**\n\`\`\`${error.message}\`\`\``,
+				content: `**error reloading commands:**\n\`\`\`${error.message}\`\`\``,
 			});
 		}
 	}

@@ -6,8 +6,8 @@ module.exports = {
 		const key = generateLicenseKey(tier);
 
 		await interaction.reply({
-			content: `**Generated ${tier} License Key:**\n\n||\`${key}\`||` +
-					 `\n\nThis key can be redeemed by a user to activate their license.`,
+			content: `**generated ${tier} key:**\n\n||\`${key}\`||` +
+					 `\n\nthis key can be redeemed by a user to activate their license.`,
 			ephemeral: true
 		});
 

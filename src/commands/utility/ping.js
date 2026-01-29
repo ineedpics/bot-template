@@ -8,7 +8,7 @@ module.exports = {
 
 	data: new SlashCommandBuilder()
 		.setName("ping")
-		.setDescription("Gets bot latency"),
+		.setDescription("gets bot latency"),
 
 	async execute(interaction) {
 		const sent = await interaction.deferReply({ fetchReply: true });
@@ -16,6 +16,6 @@ module.exports = {
 		const roundTripLatency = sent.createdTimestamp - interaction.createdTimestamp;
 		const websocketLatency = interaction.client.ws.ping;
 
-		await interaction.editReply(`Pong! (rt: ${roundTripLatency}ms, ws: ${websocketLatency}ms)`);
+		await interaction.editReply(`pong! (rt: ${roundTripLatency}ms, ws: ${websocketLatency}ms)`);
 	},
 };

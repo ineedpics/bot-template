@@ -16,7 +16,7 @@ module.exports = {
 			const buffer = Buffer.from(keys.join("\n"), "utf-8");
 
 			await interaction.editReply({
-				content: `**Generated ${count} ${tier} License Keys**\n\nKeys are attached as a text file.`,
+				content: `**generated ${count} ${tier} keys**\n\nKeys are attached as a text file.`,
 				files: [{
 					attachment: buffer,
 					name: `${tier}_keys_${Date.now()}.txt`
@@ -24,8 +24,8 @@ module.exports = {
 			});
 		} else {
 			await interaction.editReply({
-				content: `**Generated ${count} ${tier} License Keys:**\n\n${keysText}\n\n` +
-						 `These keys can be redeemed by users to activate their licenses.`
+				content: `**generated ${count} ${tier} keys:**\n\n${keysText}\n\n` +
+						 `these keys can be redeemed by users to activate their licenses.`
 			});
 		}
 

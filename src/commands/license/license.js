@@ -43,7 +43,7 @@ module.exports = {
 		}
 
 		const statusEmoji = license.revoked ? "🔴" : "🟢";
-		const status = license.revoked ? "REVOKED (Banned)" : "Active";
+		const status = license.revoked ? "Revoked" : "Active";
 
 		const embed = {
 			color: license.revoked ? 0xFF0000 : (license.tier === LICENSE_TIERS.PRO ? 0xFFD700 : license.tier === LICENSE_TIERS.BASIC ? 0x00FF00 : 0x808080),

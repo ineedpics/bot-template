@@ -7,14 +7,14 @@ module.exports = {
 
 		if (!license) {
 			return interaction.reply({
-				content: `User ${targetUser.tag} does not have a license.`,
+				content: `user \`${targetUser.tag}\` does not have a license.`,
 				ephemeral: true
 			});
 		}
 
 		if (!license.revoked) {
 			return interaction.reply({
-				content: `User ${targetUser.tag}'s license is not revoked.`,
+				content: `user \`${targetUser.tag}\`'s license is not revoked.`,
 				ephemeral: true
 			});
 		}
@@ -23,14 +23,14 @@ module.exports = {
 
 		if (!success) {
 			return interaction.reply({
-				content: `Failed to un-revoke license for ${targetUser.tag}.`,
+				content: `failed to un-revoke license for \`${targetUser.tag}\`.`,
 				ephemeral: true
 			});
 		}
 
 		await interaction.reply({
-			content: `**Un-revoked ${targetUser.tag}'s license.**\n\n` +
-					 `They can now use the bot again with their ${license.tier} license.`,
+			content: `**un-revoked \`${targetUser.tag}\`'s license.**\n\n` +
+					 `they can now use the bot again with their ${license.tier} license.`,
 			ephemeral: true
 		});
 

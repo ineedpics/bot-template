@@ -8,7 +8,7 @@ module.exports = {
 
 		if (!license) {
 			return interaction.reply({
-				content: `User ${targetUser.tag} does not have a license.`,
+				content: `user \`${targetUser.tag}\` does not have a license.`,
 				ephemeral: true
 			});
 		}
@@ -18,18 +18,17 @@ module.exports = {
 
 		if (!success) {
 			return interaction.reply({
-				content: `Failed to revoke license for ${targetUser.tag}.`,
+				content: `failed to revoke license for \`${targetUser.tag}\`.`,
 				ephemeral: true
 			});
 		}
 
 		let message;
 		if (previousTier === LICENSE_TIERS.FREE) {
-			message = `**Revoked ${targetUser.tag}'s FREE license.**\n\n` +
-					  `They are now **BANNED** from using the bot.`;
+			message = `**revoked \`${targetUser.tag}\`'s FREE license.**\n\n`;
 		} else {
-			message = `**Revoked ${targetUser.tag}'s ${previousTier} license.**\n\n` +
-					  `They have been downgraded to **FREE** tier.`;
+			message = `**revoked \`${targetUser.tag}\`'s ${previousTier} license.**\n\n` +
+					  `they have been downgraded to **FREE** tier.`;
 		}
 
 		await interaction.reply({

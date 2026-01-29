@@ -13,42 +13,42 @@ module.exports = {
 
 	data: new SlashCommandBuilder()
 		.setName("owner")
-		.setDescription("Owner-only commands")
+		.setDescription("owner-only commands")
 		.addSubcommand(subcommand =>
 			subcommand
 				.setName("reload")
-				.setDescription("Reloads all bot commands and restarts")
+				.setDescription("reloads all bot commands and restarts")
 		)
 		.addSubcommand(subcommand =>
 			subcommand
 				.setName("revoke")
-				.setDescription("Revoke a user's license")
+				.setDescription("revoke a user's license")
 				.addUserOption(option =>
 					option
 						.setName("user")
-						.setDescription("The user to revoke")
+						.setDescription("the user to revoke")
 						.setRequired(true)
 				)
 		)
 		.addSubcommand(subcommand =>
 			subcommand
 				.setName("unrevoke")
-				.setDescription("Un-revoke a user's license")
+				.setDescription("un-revoke a user's license")
 				.addUserOption(option =>
 					option
 						.setName("user")
-						.setDescription("The user to un-revoke")
+						.setDescription("the user to un-revoke")
 						.setRequired(true)
 				)
 		)
 		.addSubcommand(subcommand =>
 			subcommand
 				.setName("keygen")
-				.setDescription("Generate a single license key")
+				.setDescription("generate a single license key")
 				.addStringOption(option =>
 					option
 						.setName("tier")
-						.setDescription("License tier")
+						.setDescription("license tier")
 						.setRequired(true)
 						.addChoices(
 							{ name: "FREE", value: LICENSE_TIERS.FREE },
@@ -60,11 +60,11 @@ module.exports = {
 		.addSubcommand(subcommand =>
 			subcommand
 				.setName("masskeygen")
-				.setDescription("Generate multiple license keys")
+				.setDescription("generate multiple license keys")
 				.addStringOption(option =>
 					option
 						.setName("tier")
-						.setDescription("License tier")
+						.setDescription("license tier")
 						.setRequired(true)
 						.addChoices(
 							{ name: "FREE", value: LICENSE_TIERS.FREE },
@@ -75,7 +75,7 @@ module.exports = {
 				.addIntegerOption(option =>
 					option
 						.setName("count")
-						.setDescription("Number of keys to generate")
+						.setDescription("number of keys to generate")
 						.setRequired(true)
 						.setMinValue(1)
 						.setMaxValue(50)
@@ -103,7 +103,7 @@ module.exports = {
 				break;
 			default:
 				await interaction.reply({
-					content: "Unknown subcommand.",
+					content: "unknown subcommand.",
 					ephemeral: true
 				});
 		}

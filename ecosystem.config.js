@@ -1,7 +1,7 @@
 module.exports = {
 	apps: [
 		{
-			name: "discord-bot-template",
+			name: "biscuit",
 			script: "./src/index.js",
 			instances: 1,
 			autorestart: true,
