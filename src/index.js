@@ -6,6 +6,7 @@ const { Client, Collection, GatewayIntentBits } = require("discord.js");
 const { COMMAND_CONTEXTS, LICENSE_TIERS } = require("./constants");
 const { deployCommands } = require("./utils/deployCommands");
 const { getUserLicense, setUserLicense, canUseCommand } = require("./utils/licenseManager");
+const { isHidden } = require("./utils/hiddenUsers");
 
 // Create a new client instance
 const client = new Client({
@@ -119,7 +120,19 @@ client.once("ready", () => {
 });
 
 client.on("interactionCreate", async (interaction) => {
-	if (!interaction.isChatInputCommand()) return;
+	if (interaction.isAutocomplete()) {
+		const command = client.commands.get(interaction.commandName);
+		if (command?.autocomplete) {
+			try {
+				await command.autocomplete(interaction);
+			} catch (error) {
+				console.error(`[ERROR] Autocomplete error for ${interaction.commandName}:`, error);
+			}
+		}
+		return;
+	}
+
+	if (!interaction.isChatInputCommand() && !interaction.isMessageContextMenuCommand()) return;
 
 	// Auto-generate FREE license for new users
 	let userLicense = getUserLicense(interaction.user.id);
@@ -183,6 +196,22 @@ client.on("interactionCreate", async (interaction) => {
 
 	timestamps.set(interaction.user.id, now);
 	setTimeout(() => timestamps.delete(interaction.user.id), cooldownAmount);
+
+	// If the user has /hide enabled, wrap reply methods to force ephemeral
+	if (isHidden(interaction.user.id)) {
+		const originalReply = interaction.reply.bind(interaction);
+		interaction.reply = (options) => {
+			if (typeof options === "string") {
+				return originalReply({ content: options, ephemeral: true });
+			}
+			return originalReply({ ...options, ephemeral: true });
+		};
+
+		const originalDeferReply = interaction.deferReply.bind(interaction);
+		interaction.deferReply = (options) => {
+			return originalDeferReply({ ...options, ephemeral: true });
+		};
+	}
 
 	try {
 		console.log(`[COMMAND] ${interaction.user.tag} (${interaction.user.id}) used /${command.data.name} in ${interaction.guild ? `${interaction.guild.name} (${interaction.guild.id})` : "DM"}`);
