@@ -24,7 +24,7 @@ module.exports = {
 		// If a user was specified but executor is not owner, deny
 		if (targetUser && !isOwner) {
 			return interaction.reply({
-				content: "Only the bot owner can check other users' licenses.",
+				content: "only the bot owner can check other users' licenses.",
 				ephemeral: true
 			});
 		}
@@ -36,8 +36,8 @@ module.exports = {
 		if (!license) {
 			return interaction.reply({
 				content: targetUser
-					? `User ${targetUser.tag} does not have a license.`
-					: "No license found. This shouldn't happen! Please contact support.",
+					? `user ${targetUser.tag} does not have a license.`
+					: "no license found. this shouldn't happen! please contact support.",
 				ephemeral: true
 			});
 		}
